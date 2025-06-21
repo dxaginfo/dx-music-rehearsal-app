@@ -1,136 +1,154 @@
 # Rehearsal Scheduler
 
-A comprehensive web application for scheduling and managing band rehearsals, tracking attendance, and optimizing practice times.
+A comprehensive web application for music bands to efficiently schedule and manage rehearsals, track attendance, and optimize practice time.
 
-## Features
+## 🎵 Features
 
-- **User Management**: Create band profiles, invite members, and assign roles
-- **Calendar & Scheduling**: Create events, track availability, and send invitations
-- **Rehearsal Management**: Create agendas, track attendance, and manage notes
-- **Notifications & Reminders**: Automated emails and alerts for upcoming rehearsals
-- **Resource Management**: Coordinate venues, equipment, and shared resources
-- **Integration**: Sync with personal calendars and access shared files
-- **Analytics**: Track attendance patterns and optimize scheduling
+- **Rehearsal Management**: Create, update, and cancel rehearsal events
+- **Availability Tracking**: Band members can indicate their availability for scheduled rehearsals
+- **Smart Scheduling**: Automatically suggest optimal rehearsal times based on member availability
+- **Attendance Recording**: Track who attends each rehearsal
+- **Rehearsal Planning**: Create structured practice agendas with time allocations
+- **Resource Management**: Track instruments, equipment, and venue availability
+- **Real-time Notifications**: Instant updates for schedule changes
+- **Mobile Responsive Design**: Works seamlessly on all devices
 
-## Technology Stack
+## 🚀 Tech Stack
 
 ### Frontend
-- React.js with Next.js
-- Material UI
-- Redux Toolkit for state management
-- FullCalendar for scheduling interface
+- **Next.js**: React framework for server-rendered applications
+- **Material UI**: Modern React UI library
+- **Redux Toolkit**: State management
+- **Socket.io-client**: Real-time client-server communication
+- **FullCalendar**: Interactive calendar interface
+- **Formik & Yup**: Form handling and validation
 
 ### Backend
-- Node.js with Express
-- JWT authentication
-- PostgreSQL database with Prisma ORM
-- Redis for caching and real-time features
+- **Node.js**: JavaScript runtime
+- **Express**: Web framework
+- **Prisma**: Modern database ORM
+- **PostgreSQL**: Relational database
+- **Socket.io**: Real-time server-client communication
+- **JSON Web Tokens (JWT)**: Authentication
+- **Swagger**: API documentation
 
 ### DevOps
-- Docker containerization
-- GitHub Actions for CI/CD
-- Vercel/AWS for hosting
+- **Docker & Docker Compose**: Containerization and orchestration
+- **ESLint & Prettier**: Code quality and formatting
 
-## Getting Started
+## 📋 Prerequisites
 
-### Prerequisites
-- Node.js (v16+)
+- Node.js (v14+)
 - npm or yarn
 - PostgreSQL
-- Redis (optional for production)
+- Redis (optional, for production)
 
-### Installation
+## 🛠️ Installation & Setup
 
-1. Clone the repository
+### Local Development
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/dxaginfo/dx-music-rehearsal-app.git
+   cd dx-music-rehearsal-app
+   ```
+
+2. **Setup environment variables**
+   
+   Copy the example environment files and update with your configurations:
+   ```bash
+   # For the server
+   cp server/.env.example server/.env
+   
+   # For the client
+   cp client/.env.example client/.env
+   ```
+
+3. **Install dependencies**
+   ```bash
+   # Install server dependencies
+   cd server
+   npm install
+   
+   # Install client dependencies
+   cd ../client
+   npm install
+   ```
+
+4. **Initialize the database**
+   ```bash
+   # From the server directory
+   npx prisma migrate dev
+   ```
+
+5. **Start the development servers**
+   ```bash
+   # Start the server (from server directory)
+   npm run dev
+   
+   # Start the client (from client directory)
+   npm run dev
+   ```
+
+### Using Docker
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/dxaginfo/dx-music-rehearsal-app.git
+   cd dx-music-rehearsal-app
+   ```
+
+2. **Setup environment variables**
+   
+   Copy the example environment files and update with your configurations (similar to local setup).
+
+3. **Build and start with Docker Compose**
+   ```bash
+   docker-compose up -d
+   ```
+
+   This will build and start all services:
+   - PostgreSQL database
+   - Redis
+   - Backend API server
+   - Frontend client
+
+## 📱 Usage
+
+Once the application is running:
+
+1. Create an account and log in
+2. Create a band or join an existing one
+3. Schedule rehearsals and invite band members
+4. Manage rehearsal schedules, attendance, and resources
+5. Plan rehearsal agendas with specific focuses and time allocations
+
+## 📖 API Documentation
+
+API documentation is automatically generated using Swagger.
+- Access the API docs at: `http://localhost:5000/api/docs` when the server is running.
+
+## 🧪 Testing
+
 ```bash
-git clone https://github.com/dxaginfo/dx-music-rehearsal-app.git
-cd dx-music-rehearsal-app
-```
-
-2. Install dependencies
-```bash
-# Install backend dependencies
+# Run server tests
 cd server
-npm install
+npm test
 
-# Install frontend dependencies
-cd ../client
-npm install
+# Run client tests
+cd client
+npm test
 ```
 
-3. Set up environment variables
-```bash
-# In the server directory, create a .env file
-cp .env.example .env
+## 🔒 Security
 
-# In the client directory, create a .env.local file
-cp .env.example .env.local
+- JWT-based authentication
+- Password hashing with bcrypt
+- Protected API endpoints
+- CORS configuration
+- Helmet for security headers
 
-# Edit both files with your configuration
-```
-
-4. Set up the database
-```bash
-# In the server directory
-npx prisma migrate dev
-```
-
-5. Start the development servers
-```bash
-# Start the backend server (from server directory)
-npm run dev
-
-# Start the frontend server (from client directory)
-npm run dev
-```
-
-6. Visit `http://localhost:3000` in your browser
-
-### Docker Setup
-
-Alternatively, you can use Docker Compose:
-
-```bash
-docker-compose up -d
-```
-
-## Project Structure
-
-```
-├── client/                # Frontend React/Next.js application
-│   ├── components/        # Reusable UI components
-│   ├── pages/             # Next.js pages
-│   ├── hooks/             # Custom React hooks
-│   ├── styles/            # Global styles and theme
-│   └── store/             # Redux store configuration
-│
-├── server/                # Backend Node.js/Express application
-│   ├── controllers/       # Request handlers
-│   ├── models/            # Data models and schema
-│   ├── routes/            # API routes
-│   ├── services/          # Business logic
-│   ├── middleware/        # Express middleware
-│   └── prisma/            # Database schema and migrations
-│
-├── docker-compose.yml     # Docker configuration
-└── README.md              # This file
-```
-
-## API Documentation
-
-API documentation is available at `/api/docs` when running the development server.
-
-## Deployment
-
-### Vercel Deployment
-1. Connect your GitHub repository to Vercel
-2. Set up the environment variables
-3. Deploy the frontend and serverless backend functions
-
-### AWS Deployment
-Detailed AWS deployment instructions are available in `DEPLOYMENT.md`.
-
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -138,12 +156,10 @@ Detailed AWS deployment instructions are available in `DEPLOYMENT.md`.
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## License
+## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
+## 📞 Contact
 
-- Calendar scheduling inspired by Google Calendar
-- Authentication system based on industry best practices
-- UI/UX design influenced by leading scheduling applications
+- Project Link: [https://github.com/dxaginfo/dx-music-rehearsal-app](https://github.com/dxaginfo/dx-music-rehearsal-app)
